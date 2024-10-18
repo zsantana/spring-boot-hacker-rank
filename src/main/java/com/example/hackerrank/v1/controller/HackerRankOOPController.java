@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Tag(name = "OOP", description = "Programação Orientada a Objeto")
 public class HackerRankOOPController {
 
-
     @PostMapping("/oop/heranca1")
     public ResponseEntity<String> calcularValor1(@RequestBody ValorDTO valorDTO) {
         
