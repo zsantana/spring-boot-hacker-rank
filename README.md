@@ -11,17 +11,7 @@ https://www.hackerrank.com/domains/java
 $ mvn clean package
 
 # Local execution
-$ mvn quarkus:dev -Ddebug=false
-```
-
-
-## Getting started Docker
-```bash
-# Install image from file build_docker_push.sh 
-$ ./build_docker_push.sh 
-
-# Started and attaches to containers for a service
-$ docker-compose --env-file ./.env up
+$ mvn sprng-boot:run
 ```
 
 
