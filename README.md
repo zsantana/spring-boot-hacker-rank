@@ -1,4 +1,4 @@
-# Exemplos de exercício do site Hacker-rank
+# Exemplos de exercícios do site Hacker-rank
 
 https://www.hackerrank.com/domains/java
 
@@ -11,7 +11,7 @@ https://www.hackerrank.com/domains/java
 $ mvn clean package
 
 # Local execution
-$ mvn sprng-boot:run
+$ mvn spring-boot:run
 ```
 
 
