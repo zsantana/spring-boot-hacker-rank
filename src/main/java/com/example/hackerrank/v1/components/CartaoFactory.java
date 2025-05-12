@@ -1,4 +1,4 @@
-package com.example.hackerrank.v1.controller;
+package com.example.hackerrank.v1.components;
 
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;

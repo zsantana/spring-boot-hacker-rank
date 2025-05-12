@@ -1,4 +1,4 @@
-package com.example.hackerrank.v1.controller;
+package com.example.hackerrank.v1.components;
 
 import java.math.BigDecimal;
 

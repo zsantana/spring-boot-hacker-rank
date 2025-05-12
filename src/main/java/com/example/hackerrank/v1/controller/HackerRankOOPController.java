@@ -2,14 +2,13 @@ package com.example.hackerrank.v1.controller;
 
 import java.math.BigDecimal;
 
-import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.hackerrank.v1.components.CartaoFactory;
+import com.example.hackerrank.v1.components.CartaoGenerico;
 import com.example.hackerrank.v1.dto.ValorDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -23,10 +22,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Tag(name = "OOP", description = "Programação Orientada a Objeto")
 public class HackerRankOOPController {
 
-    private static Logger LOGGER = org.slf4j.LoggerFactory.getLogger(HackerRankOOPController.class);
-
-    @Autowired
     private CartaoFactory cartaoFactory;
+
+    public HackerRankOOPController(CartaoFactory cartaoFactory) {
+        this.cartaoFactory = cartaoFactory;
+    }
 
     @PostMapping("/oop/heranca1")
     public ResponseEntity<String> calcularValor1(@RequestBody ValorDTO valorDTO) {
@@ -232,7 +232,6 @@ public class HackerRankOOPController {
         }
         
         var cartao = cartaoFactory.getCartao(tipocartao);
-        LOGGER.info("Cartão: {}", cartao);
 
         if (cartao == null) {
             return ResponseEntity.badRequest().body("Tipo de cartão não encontrado");
