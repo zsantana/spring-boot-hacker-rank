@@ -39,7 +39,7 @@ public class HackerRankBasicoController {
     public ResponseEntity<ResponseFormataValorDTO> formatarValor(@RequestBody RequestFormataValorDTO requisicaoDTO) {
         
         var usFormat = NumberFormat.getCurrencyInstance(Locale.US);
-        var indiaFormat = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+        var indiaFormat = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN"));
         var chinaFormat = NumberFormat.getCurrencyInstance(Locale.CHINA);
         var franceFormat = NumberFormat.getCurrencyInstance(Locale.FRANCE);
 

@@ -2,7 +2,11 @@ package com.example.hackerrank.v1.controller;
 
 import java.math.BigDecimal;
 
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +22,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping(value = "/api/v1/hacker-rank")
 @Tag(name = "OOP", description = "Programação Orientada a Objeto")
 public class HackerRankOOPController {
+
+    private static Logger LOGGER = org.slf4j.LoggerFactory.getLogger(HackerRankOOPController.class);
+
+    @Autowired
+    private CartaoFactory cartaoFactory;
 
     @PostMapping("/oop/heranca1")
     public ResponseEntity<String> calcularValor1(@RequestBody ValorDTO valorDTO) {
@@ -198,14 +207,38 @@ public class HackerRankOOPController {
             }
         }
         
-        CartaoFactory factory = new CartaoFactory();
-        CartaoGenerico cartao = factory.getCartao(tipocartao);
+        var factory = new CartaoFactory();
+        var cartao = factory.getCartao(tipocartao);
 
         if (cartao == null) {
             return ResponseEntity.badRequest().body("Tipo de cartão não encontrado");
         }
 
-        BigDecimal cashback = cartao.calcularCashBack(valor);
+        var cashback = cartao.calcularCashBack(valor);
+        return ResponseEntity.ok("O cashback é: " + cashback);
+
+    }
+
+    @PostMapping("/oop/interface4/{tipocartao}/{valor}")
+    public ResponseEntity<String> calcularCashBack3(@PathVariable String tipocartao, @PathVariable BigDecimal valor) {
+        
+        @Component("ELO")
+        class CartaoElo implements CartaoGenerico {
+
+            public BigDecimal calcularCashBack(BigDecimal valorCompra) {
+                return valor.multiply(new BigDecimal("0.02"));
+            }
+            
+        }
+        
+        var cartao = cartaoFactory.getCartao(tipocartao);
+        LOGGER.info("Cartão: {}", cartao);
+
+        if (cartao == null) {
+            return ResponseEntity.badRequest().body("Tipo de cartão não encontrado");
+        }
+
+        var cashback = cartao.calcularCashBack(valor);
         return ResponseEntity.ok("O cashback é: " + cashback);
 
     }
